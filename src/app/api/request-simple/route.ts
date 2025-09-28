@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sendEmail } from '@/lib/email';
+// import { sendEmail } from '@/lib/email';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
 import path from 'path';
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       id: serviceId,
       name: serviceNames[serviceId] || serviceId,
       fileName: serviceFileMapping[serviceId]
-    })).filter((service: any) => service.fileName);
+    })).filter((service: { id: string; name: string; fileName?: string }) => service.fileName);
 
     // Prepare attachments
     const attachments = [];
@@ -112,7 +112,7 @@ export async function POST(request: NextRequest) {
 
       <h3>請求された資料</h3>
       <ul style="margin-bottom: 20px;">
-        ${selectedServices.map(service => `
+        ${selectedServices.map((service: { id: string; name: string; fileName?: string }) => `
           <li style="margin-bottom: 10px;">
             <strong>${service.name}</strong>
           </li>
@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
 
       <p>以下のサービス資料をPDFファイルにてお送りいたします：</p>
       <ul>
-        ${selectedServices.map(service => `<li><strong>${service.name}</strong></li>`).join('')}
+        ${selectedServices.map((service: { id: string; name: string; fileName?: string }) => `<li><strong>${service.name}</strong></li>`).join('')}
       </ul>
 
       <p><strong>添付ファイルをご確認ください。</strong>PDFファイルが正常に開けない場合は、お電話にてお問い合わせください。</p>

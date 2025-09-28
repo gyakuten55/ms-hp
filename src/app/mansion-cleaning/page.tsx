@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function MansionCleaning() {
@@ -53,20 +54,20 @@ export default function MansionCleaning() {
     '集合ゴミ置き場整理・清掃'
   ];
 
-  const responseFormats = [
-    {
-      title: '時間帯調整',
-      description: '住民の迷惑にならない時間帯での作業を徹底'
-    },
-    {
-      title: '長期定期契約',
-      description: '年間契約で品質安定とコスト削減を実現'
-    },
-    {
-      title: '管理会社連携',
-      description: '管理会社様と連携した円滑な清掃サービス'
-    }
-  ];
+  // const responseFormats = [
+  //   {
+  //     title: '時間帯調整',
+  //     description: '住民の迷惑にならない時間帯での作業を徹底'
+  //   },
+  //   {
+  //     title: '長期定期契約',
+  //     description: '年間契約で品質安定とコスト削減を実現'
+  //   },
+  //   {
+  //     title: '管理会社連携',
+  //     description: '管理会社様と連携した円滑な清掃サービス'
+  //   }
+  // ];
 
   const pricingData = [
     { scale: '小規模（〜20世帯）', price: '2,500〜4,000円' },
@@ -114,9 +115,9 @@ export default function MansionCleaning() {
           <nav className="text-sm">
             <ol className="flex items-center space-x-2">
               <li>
-                <a href="/" className="text-primary-600 hover:text-primary-700">
+                <Link href="/" className="text-primary-600 hover:text-primary-700">
                   トップ
-                </a>
+                </Link>
               </li>
               <li className="text-neutral-500">
                 <span className="mx-2">›</span>

@@ -8,9 +8,6 @@ import {
   HomeIcon,
   TruckIcon,
   ClockIcon,
-  ShieldCheckIcon,
-  CurrencyYenIcon,
-  MapPinIcon,
   CheckCircleIcon,
   ChevronRightIcon,
   WrenchScrewdriverIcon,
@@ -172,28 +169,28 @@ export default function Home() {
     ]
   };
 
-  const strengths = [
-    {
-      icon: CurrencyYenIcon,
-      title: '直契約で低コスト',
-      description: '中間マージンなしで大手より低価格を実現'
-    },
-    {
-      icon: ClockIcon,
-      title: '時間厳守',
-      description: 'ゴミ収集前や営業時間外に確実対応'
-    },
-    {
-      icon: ShieldCheckIcon,
-      title: '安心の写真報告',
-      description: '清掃前後の写真報告で作業を見える化'
-    },
-    {
-      icon: MapPinIcon,
-      title: '地域密着サービス',
-      description: '東京・埼玉・千葉・神奈川エリアを中心に展開'
-    }
-  ];
+  // const strengths = [
+  //   {
+  //     icon: CurrencyYenIcon,
+  //     title: '直契約で低コスト',
+  //     description: '中間マージンなしで大手より低価格を実現'
+  //   },
+  //   {
+  //     icon: ClockIcon,
+  //     title: '時間厳守',
+  //     description: 'ゴミ収集前や営業時間外に確実対応'
+  //   },
+  //   {
+  //     icon: ShieldCheckIcon,
+  //     title: '安心の写真報告',
+  //     description: '清掃前後の写真報告で作業を見える化'
+  //   },
+  //   {
+  //     icon: MapPinIcon,
+  //     title: '地域密着サービス',
+  //     description: '東京・埼玉・千葉・神奈川エリアを中心に展開'
+  //   }
+  // ];
 
   return (
     <div className="pt-16 lg:pt-20">

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function About() {
@@ -53,9 +54,9 @@ export default function About() {
           <nav className="text-sm">
             <ol className="flex items-center space-x-2">
               <li>
-                <a href="/" className="text-primary-600 hover:text-primary-700">
+                <Link href="/" className="text-primary-600 hover:text-primary-700">
                   トップ
-                </a>
+                </Link>
               </li>
               <li className="text-neutral-500">
                 <span className="mx-2">›</span>
@@ -89,7 +90,7 @@ export default function About() {
             >
               <table className="w-full">
                 <tbody>
-                  {companyData.map((item, index) => (
+                  {companyData.map((item) => (
                     <tr key={item.label} className="border-b border-neutral-200 last:border-b-0">
                       <td className="bg-neutral-50 px-6 py-4 font-semibold text-navy-900 w-1/3 border-r border-neutral-200">
                         {item.label}

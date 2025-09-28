@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ChevronDownIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const Header = () => {
@@ -40,7 +41,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
               <Image
                 src="/logo.png"
                 alt="MS-Wip"
@@ -49,18 +50,18 @@ const Header = () => {
                 className="h-12 lg:h-14 w-auto"
                 priority
               />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-10">
-            <a
+            <Link
               href="/"
               className="text-navy-700 hover:text-primary-600 font-light transition-all duration-200 relative group"
             >
               トップ
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-200 group-hover:w-full"></span>
-            </a>
+            </Link>
 
             {/* Services Dropdown */}
             <div
@@ -77,7 +78,7 @@ const Header = () => {
               {isServicesOpen && (
                 <div className="absolute top-full left-0 w-72 bg-white rounded-xl shadow-2xl border border-neutral-100 py-3 mt-1">
                   <div className="grid grid-cols-1 gap-1">
-                    {services.map((service, index) => (
+                    {services.map((service) => (
                       <a
                         key={service.name}
                         href={service.href}
@@ -151,13 +152,13 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-t border-neutral-200 shadow-xl">
             <nav className="px-4 py-6 space-y-2">
-              <a
+              <Link
                 href="/"
                 className="block text-navy-700 hover:text-primary-600 font-light py-3 px-3 rounded-lg hover:bg-neutral-50 transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 トップ
-              </a>
+              </Link>
 
               <div>
                 <button

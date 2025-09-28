@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Area() {
@@ -47,24 +48,24 @@ export default function Area() {
   const supportedAreas = ['東京都', '埼玉県', '千葉県', '神奈川県'];
 
   // Detailed coverage for supported areas
-  const supportedDetails = [
-    {
-      area: '東京都',
-      details: ['23区全域', '多摩地区', '島しょ部']
-    },
-    {
-      area: '埼玉県',
-      details: ['さいたま市', '川口市', '川越市', '所沢市', 'その他主要市町村']
-    },
-    {
-      area: '千葉県',
-      details: ['千葉市', '船橋市', '柏市', '市川市', 'その他主要市町村']
-    },
-    {
-      area: '神奈川県',
-      details: ['横浜市', '川崎市', '相模原市', '藤沢市', 'その他主要市町村']
-    }
-  ];
+  // const supportedDetails = [
+  //   {
+  //     area: '東京都',
+  //     details: ['23区全域', '多摩地区', '島しょ部']
+  //   },
+  //   {
+  //     area: '埼玉県',
+  //     details: ['さいたま市', '川口市', '川越市', '所沢市', 'その他主要市町村']
+  //   },
+  //   {
+  //     area: '千葉県',
+  //     details: ['千葉市', '船橋市', '柏市', '市川市', 'その他主要市町村']
+  //   },
+  //   {
+  //     area: '神奈川県',
+  //     details: ['横浜市', '川崎市', '相模原市', '藤沢市', 'その他主要市町村']
+  //   }
+  // ];
 
   return (
     <div className="pt-16 lg:pt-20">
@@ -99,9 +100,9 @@ export default function Area() {
           <nav className="text-sm">
             <ol className="flex items-center space-x-2">
               <li>
-                <a href="/" className="text-primary-600 hover:text-primary-700">
+                <Link href="/" className="text-primary-600 hover:text-primary-700">
                   トップ
-                </a>
+                </Link>
               </li>
               <li className="text-neutral-500">
                 <span className="mx-2">›</span>

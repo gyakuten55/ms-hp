@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function GarbageService() {
@@ -119,9 +120,9 @@ export default function GarbageService() {
           <nav className="text-sm">
             <ol className="flex items-center space-x-2">
               <li>
-                <a href="/" className="text-primary-600 hover:text-primary-700">
+                <Link href="/" className="text-primary-600 hover:text-primary-700">
                   トップ
-                </a>
+                </Link>
               </li>
               <li className="text-neutral-500">
                 <span className="mx-2">›</span>
