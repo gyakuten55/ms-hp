@@ -4,6 +4,14 @@ import { supabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if Supabase is available
+    if (!supabase) {
+      return NextResponse.json(
+        { error: 'データベースサービスが利用できません。お問い合わせフォームをご利用ください。' },
+        { status: 503 }
+      );
+    }
+
     const body = await request.json();
 
     // Validate required fields
