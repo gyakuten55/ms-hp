@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 export default function About() {
@@ -131,8 +132,18 @@ export default function About() {
                 代表挨拶
               </h2>
               <div className="mt-8 bg-neutral-50 rounded-lg p-8">
-                <div className="max-w-3xl">
-                  <p className="text-navy-700 leading-relaxed mb-6">
+                <div className="flex flex-col lg:flex-row gap-8 items-start">
+                  <div className="lg:w-1/3">
+                    <Image
+                      src="/image.png"
+                      alt="代表取締役 田中マークアントニー"
+                      width={300}
+                      height={400}
+                      className="rounded-lg shadow-lg w-full h-auto object-cover"
+                    />
+                  </div>
+                  <div className="lg:w-2/3">
+                    <p className="text-navy-700 leading-relaxed mb-6">
                     株式会社MS-Wipは、2018年に映像編集・WEB制作の会社として設立いたしました。
                     日本での制作業務からスタートし、2年目にはフィリピン・マニラにも拠点を構え、海外でも映像制作サービスを展開してまいりました。
                   </p>
@@ -158,9 +169,10 @@ export default function About() {
                     「わかりやすく・見える形」で成果をお伝えできることです。
                     これからも地域の皆様とともに歩み、快適な環境づくりに貢献してまいります。
                   </p>
-                  <div className="text-right">
-                    <p className="text-navy-900 font-semibold">株式会社MS-Wip</p>
-                    <p className="text-navy-900 font-semibold">代表取締役　田中マークアントニー</p>
+                    <div className="text-right">
+                      <p className="text-navy-900 font-semibold">株式会社MS-Wip</p>
+                      <p className="text-navy-900 font-semibold">代表取締役　田中マークアントニー</p>
+                    </div>
                   </div>
                 </div>
               </div>
