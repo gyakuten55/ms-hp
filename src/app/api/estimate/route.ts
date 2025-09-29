@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
 
     // Provide more specific error messages based on error type
     let userMessage = 'メールの送信に失敗しました。しばらく時間をおいて再度お試しください。';
-    let statusCode = 500;
+    const statusCode = 500;
 
     if (error instanceof Error) {
       console.error('Error details:', {
