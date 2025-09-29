@@ -151,10 +151,42 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Error sending estimate email:', error);
+    console.error('Error in estimate API:', error);
+
+    // Provide more specific error messages based on error type
+    let userMessage = 'メールの送信に失敗しました。しばらく時間をおいて再度お試しください。';
+    let statusCode = 500;
+
+    if (error instanceof Error) {
+      console.error('Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+
+      // Check for specific error types to provide better user feedback
+      if (error.message.includes('Missing required environment variables')) {
+        console.error('Server configuration error - missing environment variables');
+        userMessage = 'サーバー設定エラーが発生しました。管理者にお問い合わせください。';
+      } else if (error.message.includes('Invalid login') || error.message.includes('Authentication failed')) {
+        console.error('SMTP authentication error');
+        userMessage = 'メール認証エラーが発生しました。管理者にお問い合わせください。';
+      } else if (error.message.includes('ECONNREFUSED') || error.message.includes('ENOTFOUND')) {
+        console.error('SMTP connection error');
+        userMessage = 'メールサーバーへの接続に失敗しました。ネットワーク接続を確認してください。';
+      } else if (error.message.includes('Timeout')) {
+        console.error('SMTP timeout error');
+        userMessage = 'メール送信がタイムアウトしました。しばらく時間をおいて再度お試しください。';
+      }
+    }
+
     return NextResponse.json(
-      { error: 'メールの送信に失敗しました。しばらく時間をおいて再度お試しください。' },
-      { status: 500 }
+      {
+        error: userMessage,
+        timestamp: new Date().toISOString(),
+        requestId: Math.random().toString(36).substr(2, 9) // Simple request ID for tracking
+      },
+      { status: statusCode }
     );
   }
 }

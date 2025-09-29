@@ -1,15 +1,32 @@
 import nodemailer from 'nodemailer';
 
 export const createEmailTransporter = () => {
-  return nodemailer.createTransport({
+  const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASSWORD'];
+  const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
+
+  if (missingVars.length > 0) {
+    throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+  }
+
+  const config = {
     host: process.env.SMTP_HOST!,
     port: parseInt(process.env.SMTP_PORT!),
-    secure: true, // use TLS
+    secure: process.env.SMTP_PORT === '465', // true for port 465, false for other ports
     auth: {
       user: process.env.SMTP_USER!,
       pass: process.env.SMTP_PASSWORD!,
     },
+    tls: {
+      rejectUnauthorized: false // Allow self-signed certificates for some providers
+    }
+  };
+
+  console.log('Creating email transporter with config:', {
+    ...config,
+    auth: { user: config.auth.user, pass: '***' } // Don't log password
   });
+
+  return nodemailer.createTransport(config);
 };
 
 export const sendEmail = async (options: {
@@ -18,17 +35,50 @@ export const sendEmail = async (options: {
   html: string;
   text?: string;
 }) => {
-  const transporter = createEmailTransporter();
+  try {
+    if (!process.env.EMAIL_FROM) {
+      throw new Error('EMAIL_FROM environment variable is missing');
+    }
 
-  const mailOptions = {
-    from: process.env.EMAIL_FROM!,
-    to: options.to,
-    subject: options.subject,
-    html: options.html,
-    text: options.text,
-  };
+    const transporter = createEmailTransporter();
 
-  return await transporter.sendMail(mailOptions);
+    // Test the connection before sending
+    console.log('Testing SMTP connection...');
+    await transporter.verify();
+    console.log('SMTP connection verified successfully');
+
+    const mailOptions = {
+      from: process.env.EMAIL_FROM,
+      to: options.to,
+      subject: options.subject,
+      html: options.html,
+      text: options.text,
+    };
+
+    console.log('Sending email:', {
+      from: mailOptions.from,
+      to: mailOptions.to,
+      subject: mailOptions.subject
+    });
+
+    const result = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', result.messageId);
+
+    return result;
+  } catch (error) {
+    console.error('Email sending failed:', {
+      error: error instanceof Error ? error.message : error,
+      stack: error instanceof Error ? error.stack : undefined,
+      config: {
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        user: process.env.SMTP_USER,
+        from: process.env.EMAIL_FROM,
+        to: options.to
+      }
+    });
+    throw error;
+  }
 };
 
 export const formatContactEmail = (data: {
