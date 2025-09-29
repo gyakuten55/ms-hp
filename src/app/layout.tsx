@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   description: "MS-Wipは清掃管理全般を幅広く対応する専門企業です。マンション・オフィス・店舗・駐車場など多様な物件に日常清掃・定期清掃・巡回清掃・臨時清掃サービスを提供しています。",
   keywords: "清掃, 管理, マンション清掃, オフィス清掃, 店舗清掃, 駐車場清掃, MS-Wip",
   authors: [{ name: "MS-Wip" }],
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export const viewport: Viewport = {
